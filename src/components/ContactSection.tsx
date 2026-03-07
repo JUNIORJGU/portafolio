@@ -32,7 +32,7 @@ const ContactSection = () => {
     setFlyPath(calculateRandomPath());
     setStatus("submitting");
 
-    fetch("https://back-end-portafolio-zash.onrender.com/api/contact", {
+    fetch("https://back-end-portafolio-f66l.onrender.com/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
