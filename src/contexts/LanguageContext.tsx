@@ -26,10 +26,10 @@ const translations = {
   // Hero
   "hero.greeting": { es: "Hola, soy", en: "Hi, I'm", pt: "Olá, sou", ru: "Привет, я" },
   "hero.description": {
-    es: "Desarrollador Full Stack apasionado por crear experiencias digitales únicas. Transformo ideas en código limpio y funcional.",
-    en: "Full Stack Developer passionate about creating unique digital experiences. I transform ideas into clean and functional code.",
-    pt: "Desenvolvedor Full Stack apaixonado por criar experiências digitais únicas. Transformo ideias em código limpo e funcional.",
-    ru: "Full Stack разработчик, увлечённый созданием уникального цифрового опыта. Превращаю идеи в чистый и функциональный код.",
+    es: "Desarrollador Backend enfocado en la construcción de APIs y sistemas robustos. Aunque mi especialidad es el backend, tengo comprensión del frontend, lo que me permite colaborar eficazmente en el desarrollo de aplicaciones web completas.",
+    en: "Backend Developer focused on building APIs and robust systems. Although my specialty is backend, I have an understanding of the frontend, which allows me to collaborate effectively in the development of complete web applications.",
+    pt: "Desenvolvedor Backend focado na construção de APIs e sistemas robustos. Embora minha especialidade seja backend, tenho compreensão do frontend, o que me permite colaborar de forma eficaz no desenvolvimento de aplicações web completas.",
+    ru: "Бэкенд-разработчик, специализирующийся на создании API и надежных систем. Хотя моей основной специализацией является бэкенд, я разбираюсь во фронтенде, что позволяет мне эффективно сотрудничать в разработке полноценных веб-приложений.",
   },
   "hero.viewProjects": { es: "Ver proyectos", en: "View projects", pt: "Ver projetos", ru: "Проекты" },
   "hero.contact": { es: "Contacto", en: "Contact", pt: "Contato", ru: "Контакт" },
