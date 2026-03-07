@@ -55,7 +55,7 @@ const translations = {
   "about.years": { es: "5 años", en: "5 years", pt: "5 anos", ru: "5 лет" },
   "about.yearsDesc": { es: "aprox. de experiencia", en: "approx. experience", pt: "aprox. de experiência", ru: "прибл. опыта" },
   "about.projects": { es: "3 proyectos", en: "3 projects", pt: "3 projetos", ru: "3 проекта" },
-  "about.projectsDesc": { es: "completados", en: "completed", pt: "concluídos", ru: "завершено" },
+  "about.projectsDesc": { es: "en curso", en: "in progress", pt: "em curso", ru: "в процессе" },
   "about.coffee": { es: "∞ café", en: "∞ coffee", pt: "∞ café", ru: "∞ кофе" },
   "about.coffeeDesc": { es: "consumido", en: "consumed", pt: "consumido", ru: "выпито" },
   "about.description": {
@@ -74,23 +74,26 @@ const translations = {
 
   // Projects
   "projects.title": { es: "Proyectos", en: "Projects", pt: "Projetos", ru: "Проекты" },
-  "projects.ecommerce.desc": {
-    es: "Tienda online con carrito, pagos y panel de administración.",
-    en: "Online store with cart, payments, and admin panel.",
-    pt: "Loja online com carrinho, pagamentos e painel de administração.",
-    ru: "Интернет-магазин с корзиной, оплатой и панелью администратора.",
+  "projects.scheduler.title": { es: "Programador de Tareas", en: "Project Scheduler", pt: "Programador de Tarefas", ru: "Планировщик задач" },
+  "projects.scheduler.desc": {
+    es: "Gestión de proyectos y tareas con administración de gastos e ingresos empresariales.",
+    en: "Project and task management with business expense and income administration.",
+    pt: "Gestão de projetos e tarefas com administração de despesas e receitas empresariais.",
+    ru: "Управление проектами и задачами с администрированием бизнес-расходов и доходов.",
   },
-  "projects.taskmanager.desc": {
-    es: "Aplicación de gestión de tareas con drag & drop y colaboración en tiempo real.",
-    en: "Task management app with drag & drop and real-time collaboration.",
-    pt: "Aplicativo de gestão de tarefas com drag & drop e colaboração em tempo real.",
-    ru: "Приложение для управления задачами с drag & drop и совместной работой в реальном времени.",
+  "projects.gorazer.title": { es: "Portafolio GORAZER", en: "GORAZER Portfolio", pt: "Portfólio GORAZER", ru: "Портфолио GORAZER" },
+  "projects.gorazer.desc": {
+    es: "Sitio web portafolio para la empresa de desarrollo GORAZER.",
+    en: "Portfolio website for the development company GORAZER.",
+    pt: "Site portfólio para a empresa de desenvolvimento GORAZER.",
+    ru: "Сайт-портфолио для компании-разработчика GORAZER.",
   },
-  "projects.dashboard.desc": {
-    es: "Panel de monitoreo de APIs con gráficas en tiempo real y alertas.",
-    en: "API monitoring dashboard with real-time charts and alerts.",
-    pt: "Painel de monitoramento de APIs com gráficos em tempo real e alertas.",
-    ru: "Панель мониторинга API с графиками в реальном времени и оповещениями.",
+  "projects.finance.title": { es: "Gestor de Finanzas", en: "Finance Manager", pt: "Gestor de Finanças", ru: "Менеджер финансов" },
+  "projects.finance.desc": {
+    es: "Plataforma completa para gestionar y visualizar tus finanzas personales.",
+    en: "Complete platform to manage and visualize your personal finances.",
+    pt: "Plataforma completa para gerir e visualizar suas finanças pessoais.",
+    ru: "Полная платформа для управления и визуализации ваших личных финансов.",
   },
 
   // Contact

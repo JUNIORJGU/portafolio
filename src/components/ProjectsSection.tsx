@@ -7,19 +7,19 @@ const ProjectsSection = () => {
 
   const projects = [
     {
-      title: "E-Commerce App",
-      desc: t("projects.ecommerce.desc"),
-      tech: ["React", "Node.js", "Stripe", "PostgreSQL"],
+      title: t("projects.scheduler.title"),
+      desc: t("projects.scheduler.desc"),
+      tech: ["React", "Node.js", "PostgreSQL", "Tailwind"],
     },
     {
-      title: "Task Manager",
-      desc: t("projects.taskmanager.desc"),
-      tech: ["TypeScript", "Next.js", "Prisma", "WebSockets"],
+      title: t("projects.gorazer.title"),
+      desc: t("projects.gorazer.desc"),
+      tech: ["Next.js", "Spring Boot", "Java", "Tailwind"],
     },
     {
-      title: "API Dashboard",
-      desc: t("projects.dashboard.desc"),
-      tech: ["React", "D3.js", "Express", "Redis"],
+      title: t("projects.finance.title"),
+      desc: t("projects.finance.desc"),
+      tech: ["React", "Node.js", "PostgreSQL", "Tailwind"],
     },
   ];
 
