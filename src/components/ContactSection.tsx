@@ -5,8 +5,8 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContactSection = () => {
   const { t } = useLanguage();
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [formData, setFormData] = useState({ name: "", email: "", message: "", _honeypot: "" });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [flyPath, setFlyPath] = useState({ x: 0, y: 0, rotate: 0 });
 
   const calculateRandomPath = () => {
@@ -32,37 +32,26 @@ const ContactSection = () => {
     setFlyPath(calculateRandomPath());
     setStatus("submitting");
 
-    // TODO: Lógica para conectar con el backend de Spring Boot (Java)
-    /*
-    fetch("http://localhost:8080/api/contact", {
+    fetch("https://back-end-portafolio-zash.onrender.com/api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
-    .then(response => response.json())
-    .then(data => {
-      setStatus("success");
-      setTimeout(() => {
-        setStatus("idle");
-        setFormData({ name: "", email: "", message: "" });
-      }, 3000);
-    })
-    .catch(error => {
-      console.error("Error sending message:", error);
-      setStatus("idle");
-    });
-    */
-
-    // Simulación temporal para probar la animación
-    setTimeout(() => {
-      setStatus("success");
-      setTimeout(() => {
-        setStatus("idle");
-        setFormData({ name: "", email: "", message: "" });
-      }, 3000);
-    }, 1500); // El tiempo que tarda el avión en volar antes de mostrar el check
+      .then(async (response) => {
+        if (!response.ok) throw new Error("Server error");
+        setStatus("success");
+        setTimeout(() => {
+          setStatus("idle");
+          setFormData({ name: "", email: "", message: "", _honeypot: "" });
+        }, 3000);
+      })
+      .catch(error => {
+        console.error("Error sending message:", error);
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 3000);
+      });
   };
 
   return (
@@ -130,6 +119,17 @@ const ContactSection = () => {
                   required
                 />
               </div>
+
+              {/* Honeypot Field (Security) */}
+              <input
+                type="text"
+                name="_honeypot"
+                value={formData._honeypot}
+                onChange={(e) => setFormData({ ...formData, _honeypot: e.target.value })}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
             </div>
 
             <button
@@ -148,6 +148,16 @@ const ContactSection = () => {
                   >
                     <Check className="w-5 h-5" />
                     <span>¡Enviado con Éxito!</span>
+                  </motion.div>
+                ) : status === "error" ? (
+                  <motion.div
+                    key="error"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    className="flex items-center gap-2 text-red-400"
+                  >
+                    <span>Error al enviar</span>
                   </motion.div>
                 ) : (
                   <motion.div
@@ -236,3 +246,5 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
+
+
