@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Linkedin, Send, Check } from "lucide-react";
+import { Github, Linkedin, Send, Check, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContactSection = () => {
@@ -8,6 +8,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({ name: "", email: "", message: "", _honeypot: "" });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [flyPath, setFlyPath] = useState({ x: 0, y: 0, rotate: 0 });
+  const [crashPath, setCrashPath] = useState({ x: 0, y: 0, rotate: 0 });
 
   const calculateRandomPath = () => {
     // Vuelo amplio hacia arriba y a los lados
@@ -29,8 +30,13 @@ const ContactSection = () => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
 
-    setFlyPath(calculateRandomPath());
     setStatus("submitting");
+    setFlyPath(calculateRandomPath());
+    setCrashPath({
+      x: (Math.random() - 0.5) * 400, // Caída aleatoria en X
+      y: 100 + Math.random() * 200,   // Caída hacia abajo en Y
+      rotate: (Math.random() - 0.5) * 720 // Rotación caótica
+    });
 
     fetch("https://back-end-portafolio-f66l.onrender.com/api/contact", {
       method: "POST",
@@ -152,12 +158,38 @@ const ContactSection = () => {
                 ) : status === "error" ? (
                   <motion.div
                     key="error"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    className="flex items-center gap-2 text-red-400"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="flex items-center gap-2 text-red-400 relative w-full justify-center"
                   >
-                    <span>Error al enviar</span>
+                    <span className="relative z-10">Error al enviar</span>
+
+                    {/* Avión que regresa y se cae */}
+                    <motion.div
+                      initial={{
+                        x: flyPath.x,
+                        y: flyPath.y,
+                        rotate: flyPath.rotate,
+                        opacity: 0,
+                        scale: 1.8
+                      }}
+                      animate={{
+                        x: [flyPath.x, 0, crashPath.x],
+                        y: [flyPath.y, 0, crashPath.y],
+                        rotate: [flyPath.rotate, flyPath.rotate + 180, crashPath.rotate],
+                        opacity: [0, 1, 1, 0],
+                        scale: [1.8, 1.2, 0.8, 0.5]
+                      }}
+                      transition={{
+                        duration: 3,
+                        times: [0, 0.4, 0.8, 1],
+                        ease: "easeInOut"
+                      }}
+                      className="absolute z-20"
+                    >
+                      <Send className="w-5 h-5" />
+                    </motion.div>
                   </motion.div>
                 ) : (
                   <motion.div
@@ -165,28 +197,40 @@ const ContactSection = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex items-center gap-2 relative w-full justify-center"
+                    className="flex items-center gap-3 relative w-full justify-center"
                   >
-                    <span className="relative z-10">Enviar Mensaje</span>
+                    {status === "submitting" && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="text-primary"
+                      >
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                      </motion.div>
+                    )}
+
+                    <span className="relative z-10">
+                      {status === "submitting" ? "Enviando..." : "Enviar Mensaje"}
+                    </span>
 
                     {/* Estela de Partículas */}
                     {status === "submitting" && (
                       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                        {[...Array(15)].map((_, i) => (
+                        {[...Array(20)].map((_, i) => (
                           <motion.div
                             key={`trail-${i}`}
                             animate={{
                               x: [0, flyPath.x],
                               y: [0, flyPath.y],
-                              opacity: [0, 0.4, 0],
-                              scale: [0.5, 1.2, 0.1]
+                              opacity: [0, 0.6, 0],
+                              scale: [0.5, 1.5, 0.1]
                             }}
                             transition={{
-                              duration: 1.2,
+                              duration: 1.5,
                               ease: "easeIn",
-                              delay: i * 0.025, // Sale con un leggero retraso detrás del avión
+                              delay: i * 0.03,
                             }}
-                            className="absolute w-2 h-2 rounded-full bg-primary blur-[1px]"
+                            className="absolute w-2.5 h-2.5 rounded-full bg-primary/60 blur-[1px]"
                           />
                         ))}
                       </div>
@@ -194,10 +238,10 @@ const ContactSection = () => {
 
                     <motion.div
                       animate={status === "submitting" ? {
-                        x: [0, flyPath.x * 0.15, flyPath.x],
-                        y: [0, flyPath.y * 0.15, flyPath.y],
+                        x: [0, flyPath.x * 0.1, flyPath.x],
+                        y: [0, flyPath.y * 0.1, flyPath.y],
                         opacity: [1, 1, 0],
-                        scale: [1, 1, 0.2],
+                        scale: [1, 1.2, 1.8],
                         rotate: [0, flyPath.rotate, flyPath.rotate]
                       } : {
                         x: 0,
@@ -207,11 +251,11 @@ const ContactSection = () => {
                         rotate: 0
                       }}
                       transition={{
-                        duration: 1.2,
+                        duration: 1.5,
                         ease: "easeIn",
-                        times: [0, 0.15, 1] // Esto fuerza a que la rotación se complete rápido (en un 15% del tiempo)
+                        times: [0, 0.1, 1]
                       }}
-                      className="origin-center z-20"
+                      className="origin-center z-20 ml-2"
                     >
                       <Send className={`w-5 h-5 transition-transform ${status === 'idle' ? 'group-hover:-translate-y-1 group-hover:translate-x-1' : ''}`} />
                     </motion.div>
@@ -241,7 +285,7 @@ const ContactSection = () => {
           </div>
         </motion.div>
       </div>
-    </section>
+    </section >
   );
 };
 
