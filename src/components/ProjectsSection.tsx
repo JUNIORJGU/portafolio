@@ -10,16 +10,19 @@ const ProjectsSection = () => {
       title: t("projects.scheduler.title"),
       desc: t("projects.scheduler.desc"),
       tech: ["React", "Node.js", "PostgreSQL", "Tailwind"],
+      isComingSoon: true,
     },
     {
       title: t("projects.gorazer.title"),
       desc: t("projects.gorazer.desc"),
       tech: ["Next.js", "Spring Boot", "Java", "Tailwind"],
+      link: "https://gorazer.vercel.app/",
     },
     {
       title: t("projects.finance.title"),
       desc: t("projects.finance.desc"),
       tech: ["React", "Node.js", "PostgreSQL", "Tailwind"],
+      isComingSoon: true,
     },
   ];
 
@@ -45,13 +48,25 @@ const ProjectsSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15, duration: 0.5 }}
-                className="glass-card p-6 group hover:border-primary/40 transition-all"
+                className={`glass-card p-6 group transition-all ${
+                  project.link ? "hover:border-primary/40 cursor-pointer" : ""
+                }`}
+                onClick={() => {
+                  if (project.link) window.open(project.link, "_blank");
+                }}
               >
                 <div className="flex items-start justify-between">
-                  <div>
-                    <h3 className="font-heading text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <h3 className="font-heading text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                        {project.title}
+                      </h3>
+                      {project.isComingSoon && (
+                        <span className="px-2 py-0.5 rounded-md text-[10px] uppercase tracking-wider font-bold bg-primary/10 text-primary border border-primary/20">
+                          {t("projects.status.comingSoon")}
+                        </span>
+                      )}
+                    </div>
                     <p className="text-muted-foreground mt-2">{project.desc}</p>
                     <div className="flex flex-wrap gap-2 mt-4">
                       {project.tech.map((t) => (
@@ -65,8 +80,13 @@ const ProjectsSection = () => {
                     </div>
                   </div>
                   <div className="flex gap-3 text-muted-foreground ml-4 shrink-0">
-                    <Github className="w-5 h-5 hover:text-primary cursor-pointer transition-colors" />
-                    <ExternalLink className="w-5 h-5 hover:text-primary cursor-pointer transition-colors" />
+                    <ExternalLink
+                      className={`w-5 h-5 transition-colors ${
+                        project.link
+                          ? "hover:text-primary cursor-pointer"
+                          : "opacity-30 cursor-not-allowed"
+                      }`}
+                    />
                   </div>
                 </div>
               </motion.div>

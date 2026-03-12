@@ -92,8 +92,14 @@ const translations = {
   "projects.finance.desc": {
     es: "Plataforma completa para gestionar y visualizar tus finanzas personales.",
     en: "Complete platform to manage and visualize your personal finances.",
-    pt: "Plataforma completa para gerir e visualizar suas finanças pessoais.",
+    pt: "Plataforma completa para gerir e visualizar suas finanças personales.",
     ru: "Полная платформа для управления и визуализации ваших личных финансов.",
+  },
+  "projects.status.comingSoon": {
+    es: "Próximamente / En desarrollo",
+    en: "Coming Soon / In Development",
+    pt: "Em breve / Em desenvolvimento",
+    ru: "Скоро / В разработке",
   },
 
   // Contact
