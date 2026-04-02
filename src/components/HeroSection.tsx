@@ -123,12 +123,12 @@ const HeroSection = () => {
 
           <h1 className="text-5xl md:text-7xl font-bold font-heading leading-tight whitespace-pre-wrap relative inline-block">
             {/* Capa de texto invisible para mantener el tamaño del contenedor estático */}
-            <div className="invisible pointer-events-none h-0 select-none" aria-hidden="true">
+            <span className="invisible inline-block pointer-events-none select-none" aria-hidden="true">
               <span className="text-muted-foreground">{part1}</span>
               {part2}
               <span className="text-gradient neon-text">{part3}</span>
               <span className="font-normal">|</span>
-            </div>
+            </span>
 
             {/* Texto animado visible */}
             <div className="absolute top-0 left-0 w-full h-full">

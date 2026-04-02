@@ -2,15 +2,23 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+interface Project {
+  title: string;
+  desc: string;
+  tech: string[];
+  link?: string;
+  isComingSoon?: boolean;
+}
+
 const ProjectsSection = () => {
   const { t } = useLanguage();
 
-  const projects = [
+  const projects: Project[] = [
     {
       title: t("projects.scheduler.title"),
       desc: t("projects.scheduler.desc"),
       tech: ["React", "Node.js", "PostgreSQL", "Tailwind"],
-      isComingSoon: true,
+      link: "https://team-pilot.servergorazer.uk/",
     },
     {
       title: t("projects.gorazer.title"),
@@ -22,7 +30,7 @@ const ProjectsSection = () => {
       title: t("projects.finance.title"),
       desc: t("projects.finance.desc"),
       tech: ["React", "Node.js", "PostgreSQL", "Tailwind"],
-      isComingSoon: true,
+      link: "https://credendb.vercel.app/",
     },
   ];
 

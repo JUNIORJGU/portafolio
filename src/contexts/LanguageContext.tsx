@@ -74,7 +74,7 @@ const translations = {
 
   // Projects
   "projects.title": { es: "Proyectos", en: "Projects", pt: "Projetos", ru: "Проекты" },
-  "projects.scheduler.title": { es: "Programador de Tareas", en: "Project Scheduler", pt: "Programador de Tarefas", ru: "Планировщик задач" },
+  "projects.scheduler.title": { es: "TeamPilot", en: "TeamPilot", pt: "TeamPilot", ru: "TeamPilot" },
   "projects.scheduler.desc": {
     es: "Gestión de proyectos y tareas con administración de gastos e ingresos empresariales.",
     en: "Project and task management with business expense and income administration.",
@@ -88,12 +88,12 @@ const translations = {
     pt: "Site portfólio para a empresa de desenvolvimento GORAZER.",
     ru: "Сайт-портфолио для компании-разработчика GORAZER.",
   },
-  "projects.finance.title": { es: "Gestor de Finanzas", en: "Finance Manager", pt: "Gestor de Finanças", ru: "Менеджер финансов" },
+  "projects.finance.title": { es: "CredenDB", en: "CredenDB", pt: "CredenDB", ru: "CredenDB" },
   "projects.finance.desc": {
-    es: "Plataforma completa para gestionar y visualizar tus finanzas personales.",
-    en: "Complete platform to manage and visualize your personal finances.",
-    pt: "Plataforma completa para gerir e visualizar suas finanças personales.",
-    ru: "Полная платформа для управления и визуализации ваших личных финансов.",
+    es: "Plataforma de alta seguridad diseñada para la gestión, almacenamiento y uso compartido de credenciales.",
+    en: "High-security platform designed for the efficient management, storage, and sharing of credentials.",
+    pt: "Plataforma de alta segurança desenvolvida para a gestão e compartilhamento de credenciais.",
+    ru: "Высокозащищенная платформа для управления, хранения и обмена учетными данными.",
   },
   "projects.status.comingSoon": {
     es: "Próximamente / En desarrollo",
